@@ -1,0 +1,43 @@
+.chat__box {
+  padding: 25px 31px;
+  position: relative;
+  width: 896px;
+  height: 800px;
+  /* background-color: rgb(27, 67, 186); */
+  background-color: rgba(9, 13, 25, 1);
+  border-radius: 43px;
+}
+
+.chat__info-box {
+  margin-bottom: 28px;
+  width: 830px;
+  height: 55px;
+  border-radius: 18px;
+  background-color: rgba(68, 78, 104, 0.37);
+}
+
+.line__from-chat {
+  margin-left: -32px;
+  margin-bottom: 74px;
+}
+
+.chat__input {
+  padding-left: 19px;
+  position: absolute;
+  bottom: 20px;
+  left: 31px;
+  width: 830px;
+  height: 40px;
+  border-radius: 18px;
+  background-color: rgba(21, 29, 51, 1);
+}
+
+.chat__user-one {
+  color: white;
+  float: left;
+}
+
+.chat__user-two {
+  color: white;
+  float: right;
+}

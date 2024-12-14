@@ -1,0 +1,121 @@
+.menu__list {
+  z-index: 2;
+  width: 73px; /* Исходная ширина */
+  height: 984px;
+  border-radius: 22px;
+  background-color: rgb(4, 100, 68);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transition: width 0.7s ease; /* Плавное изменение ширины */
+  cursor: pointer;
+}
+
+.ul__item-list {
+  margin-left: 21px;
+  row-gap: 39px;
+  display: flex;
+  flex-direction: column;
+}
+
+.li__item {
+  display: flex;
+  align-items: center; /* Выравнивание иконок по центру */
+  justify-content: flex-start;
+  position: relative; /* Для размещения текста рядом с иконкой */
+}
+
+.menu__item {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  width: 100%; /* Элементы меню занимают всю ширину */
+}
+
+/* Стили для ссылки и эффекта hover */
+.menu__link {
+  text-decoration: none;
+  display: flex; /* Сохраняем поведение flex */
+  align-items: center;
+  transition: color 0.3s ease; /* Плавное изменение цвета текста */
+}
+
+/* Добавляем hover для текста */
+.menu__link:hover .menu__text {
+  color: #007bff; /* Цвет текста при наведении */
+}
+
+/* Добавляем hover для иконки */
+.menu__link:hover img {
+  transform: scale(1.1); /* Увеличиваем иконку при наведении */
+  filter: brightness(2); /* Осветляем иконку при наведении */
+  transition: transform 0.3s ease, filter 0.3s ease; /* Плавные эффекты */
+}
+
+.menu__text {
+  display: none; /* Скрыто по умолчанию */
+  margin-left: 10px; /* Отступ между иконкой и текстом */
+  font-size: 15px;
+  color: #fff; /* Белый цвет текста */
+}
+
+.menu__list:hover .menu__text {
+  display: inline-block; /* Показываем текст при наведении на весь блок */
+}
+
+.menu__item img {
+  transition: margin-right 0.3s ease; /* Плавное изменение отступа у иконки */
+}
+
+.menu__list:hover .menu__item img {
+  margin-right: 10px; /* Отступ иконки от текста */
+}
+
+.logo__img {
+  margin-top: 15px;
+  margin-bottom: 19px;
+  margin-left: -14px;
+  display: block;
+  border-radius: 15px;
+  width: 57px;
+  height: 55px;
+}
+
+.statistic__img {
+  width: 23px;
+  margin-left: 2px;
+}
+
+.users__img {
+  margin-left: -5px;
+  height: 40px;
+}
+
+.deposite__img {
+  margin-top: -11px;
+  margin-left: -9px;
+  width: 47px;
+}
+
+.maney__img {
+  width: 43px;
+  margin-left: -5px;
+  margin-top: -15px;
+}
+
+.disount__img {
+  width: 32px;
+  margin-left: -1px;
+  margin-top: -7px;
+}
+
+.support__img {
+  width: 38px;
+  margin-left: -3px;
+}
+
+.settings__img {
+  width: 53px;
+  margin-left: -10px;
+  margin-top: -12px;
+}

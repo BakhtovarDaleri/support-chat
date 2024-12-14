@@ -1,16 +1,19 @@
-import React from "react";
-import Menu from "./components/Menu/Menu";
-import LiveSupport from "./components/LiveSupport/LiveSupport";
-import Chat from "./components/Chat/Chat";
-import Info from "./components/Info/Info";
+// import Info from "./components/Info/Info";
 
+import React from "react";
+import MenuSection from "./components/MenuSection/MenuSection";
+import SupportSection from "./components/SupportSection/SupportSection";
+import ChatSection from "./components/ChatSection/ChatSection";
 function App() {
   return (
     <div>
-      <Menu />
-      <LiveSupport />
-      <Chat />
-      <Info />
+      <section className="chat">
+        <div className="container">
+          <MenuSection />
+          <SupportSection />
+          <ChatSection />
+        </div>
+      </section>
     </div>
   );
 }
