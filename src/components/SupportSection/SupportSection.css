@@ -1,3 +1,6 @@
+.supports {
+  display: flex;
+}
 .support__box {
   overflow: scroll;
   overflow-x: hidden;
@@ -7,6 +10,7 @@
   border-radius: 22px;
   background-color: rgba(9, 13, 25, 1);
   /* background-color: blue; */
+  flex: 1;
 }
 
 .support__box::-webkit-scrollbar {
@@ -22,30 +26,6 @@
   background: rgba(31, 37, 55, 0.55);
 }
 
-.support__title {
-  margin-right: 152px;
-  margin-bottom: 17px;
-  font-weight: 800;
-  font-size: 25px;
-  color: white;
-}
-.indicator {
-  display: inline-block;
-  width: 10px;
-  height: 10px;
-  border-radius: 50%;
-  margin-top: 9px;
-  margin-left: 15px;
-  margin-right: 9px;
-  background-color: #007bff;
-}
-.indicator.red {
-  background-color: #ccc;
-}
-.box__title {
-  position: relative;
-  display: flex;
-}
 .mark-read-button {
   height: 20px;
 }
@@ -63,36 +43,231 @@
   margin: 16px 0 30px 25px;
 }
 .ul__support-list {
-  list-style: none;
-  padding: 0;
-  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 11px;
+  max-width: 400px;
+  overflow-y: auto;
+  scrollbar-width: thin;
 }
+.ul__support-list::-webkit-scrollbar {
+  width: 8px;
+}
+.ul__support-list::-webkit-scrollbar-thumb {
+  background-color: #888;
+  border-radius: 4px;
+}
+.ul__support-list::-webkit-scrollbar-thumb:hover {
+  background-color: #555;
+}
+
 .btn__support-item {
   display: flex;
   align-items: center;
-  width: 359px;
+  justify-content: space-between;
+  position: relative;
+  /* width: 359px; */
   height: 55px;
+  padding: 0 15px;
   border-radius: 18px;
   background-color: rgba(68, 78, 104, 0.37);
-  margin-bottom: 11px;
   border: none;
   cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+.btn__support-item.active {
+  background-color: rgba(68, 78, 104, 0.6);
 }
 
+.indicator {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  position: absolute;
+  left: 15px;
+  background-color: #007bff;
+}
+.indicator.active-indicator {
+  background-color: #ccc;
+}
 .support-items {
   display: flex;
+  align-items: center;
 }
 .support__header {
-  display: block;
+  display: flex;
+  flex-direction: column;
   text-align: left;
+  position: absolute;
+  left: 38px;
 }
 
 .support__header h2 {
   font-size: 13px;
+  font-weight: bold;
   color: white;
+  margin: 0;
 }
 
 .support__header h3 {
   font-size: 9px;
   color: white;
+  margin: 0;
+}
+
+.support__contry-flag {
+  position: absolute;
+  left: 189px;
+  display: flex;
+  align-items: center;
+}
+.support__country {
+  font-size: 8px;
+  font-weight: bold;
+  color: #fff;
+  margin-left: 3px;
+  color: white;
+}
+
+.support__status {
+  position: absolute;
+  font-size: 8px;
+  color: #cfd6ff;
+  top: 5px;
+  right: 15px;
+}
+.new__message {
+  position: absolute;
+  top: 27px;
+  right: 35px;
+  border-radius: 7px;
+  background: linear-gradient(#5993ff, #613eff);
+  color: #fff;
+  font-size: 12px;
+  font-weight: bold;
+  width: 23px;
+  height: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Иконка закрепления (правая нижняя позиция) */
+/* .pin-icon {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+}
+
+
+.pin-button {
+  position: absolute;
+  top: 14px;
+  left: 232px;
+  cursor: pointer;
+  font-size: 16px;
+  color: white;
+  user-select: none;
+  transition: transform 0.2s ease;
+}
+
+.pin-button:hover {
+  transform: scale(1.2);
+} */
+/* Кнопка закрепления */
+/*
+.pin-button-icon {
+  width: 20px;
+  height: 20px;
+} */
+
+/* Всплывающее окно */
+.pin-tooltip {
+  position: absolute;
+  bottom: 30px; /* Расположение окна над кнопкой */
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #1f253b;
+  color: #fff;
+  padding: 5px 10px;
+  border-radius: 5px;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
+  z-index: 10;
+  font-size: 12px;
+}
+
+.pin-tooltip button {
+  background: none;
+  border: none;
+  color: #fff;
+  cursor: pointer;
+  font-size: 12px;
+}
+
+.pin-tooltip button:hover {
+  text-decoration: underline;
+}
+
+/* Иконка закрепления справа внизу */
+.pin-icon {
+  position: absolute;
+  bottom: 5px;
+  right: 5px;
+  width: 15px;
+  height: 15px;
+}
+
+.pin-button {
+  position: absolute;
+  top: 14px;
+  left: 232px;
+  display: inline-block;
+  cursor: pointer;
+}
+.pin-menu {
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  background-color: #1e1e2e;
+  border-radius: 8px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+  padding: 10px;
+  z-index: 10;
+  width: 150px;
+}
+
+.pin-menu button {
+  background: none;
+  border: none;
+  color: white;
+  font-size: 14px;
+  text-align: left;
+  padding: 5px 10px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.pin-menu button:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.pin-icon {
+  position: absolute;
+  bottom: 5px;
+  right: 10px;
+  width: 16px;
+  height: 16px;
+}
+.pin-icon-container {
+  position: absolute;
+  bottom: 5px;
+  right: 10px;
+}
+
+.chat__section {
+  flex: 1;
+  margin-left: 20px;
 }

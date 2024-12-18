@@ -1,128 +1,98 @@
 import React, { useState } from "react";
 import "./SupportSection.css";
-import activesImage from "../../assets/actives.svg";
-import line1Image from "../../assets/line.png";
-
-// Данные для карточек
-const supportData = [
-  { id: 1, email: "Ldanio12@gmail.com", name: "@mamont", isRead: false },
-  { id: 2, email: "Ldanio12@gmail.com", name: "@mamont", isRead: false },
-  { id: 3, email: "Ldanio12@gmail.com", name: "@mamont", isRead: false },
-  { id: 4, email: "Ldanio12@gmail.com", name: "@mamont", isRead: false },
-  { id: 5, email: "Ldanio12@gmail.com", name: "@mamont", isRead: false },
-  { id: 6, email: "Ldanio12@gmail.com", name: "@mamont", isRead: false },
-  { id: 7, email: "Ldanio12@gmail.com", name: "@mamont", isRead: false },
-  { id: 8, email: "Ldanio12@gmail.com", name: "@mamont", isRead: false },
-  { id: 9, email: "Ldanio12@gmail.com", name: "@mamont", isRead: false },
-  { id: 10, email: "Ldanio12@gmail.com", name: "@mamont", isRead: false },
-];
+import SupportHeader from "./SupportHeader";
+import SupportInput from "./SupportInput";
+import SupportCard from "./SupportCard/SupportCard";
+import LineImage from "./LineImage";
+import supportData from "../../data/SupportData";
+import ChatSection from "../ChatSection/ChatSection"; // Импортируем ChatSection
 
 const SupportSection = () => {
   const [supportItems, setSupportItems] = useState(supportData);
+  const [searchTerm, setSearchTerm] = useState("");
+  const [selectedChat, setSelectedChat] = useState(null); // Состояние для выбранной карточки
 
+  //Логика поиска
+  const handleSearch = (term) => {
+    setSearchTerm(term.toLowerCase());
+  };
+
+  //Логика пометки  сообщений как прочитанных
+  const handleMarkAsRead = () => {
+    setSupportItems((prevItems) =>
+      prevItems.map((item) => ({
+        ...item,
+        messages: 0,
+        isRead: true,
+      }))
+    );
+    console.log("Все сообщения помечены как прочитанные");
+  };
+
+  //Логика выбора карточки
   const handleCardClick = (id) => {
+    const selectedItem = supportItems.find((item) => item.id === id);
+    setSelectedChat(selectedItem); // Обновляем состояние выбранной карточки
+  };
+
+  //Логика закрепления карточки
+  const handlePinCard = (id) => {
+    const pinnedCount = supportItems.filter((item) => item.isPinned).length;
+
+    if (pinnedCount < 3) {
+      setSupportItems((prevItems) =>
+        prevItems.map((item) =>
+          item.id === id ? { ...item, isPinned: true } : item
+        )
+      );
+    } else {
+      alert("Вы можете закрепить не более 3 чатов.");
+    }
+  };
+
+  //Логика снятия закрпеления с карточки
+  const handleUnpinCard = (id) => {
     setSupportItems((prevItems) =>
       prevItems.map((item) =>
-        item.id === id ? { ...item, isRead: true } : item
+        item.id === id ? { ...item, isPinned: false } : item
       )
     );
-    // Дополнительно можно открыть чат или выполнить другие действия
-    console.log(`Чат для ${id} открыт`);
   };
+
+  //Сортировка и фильтрация
+  const sortedItems = [...supportItems].sort((a, b) => b.isPinned - a.isPinned);
+
+  const filteredItems = sortedItems.filter(
+    (item) =>
+      item.email.toLowerCase().includes(searchTerm) ||
+      item.name.toLowerCase().includes(searchTerm)
+  );
 
   return (
     <section className="supports">
       <div className="support__box">
-        <div className="box__title">
-          <h1 className="support__title">Лайв саппорт</h1>
-          <button
-            className="mark-read-button"
-            onClick={() =>
-              console.log("Все сообщения помечены как прочитанные")
-            }
-          >
-            Пометить все как прочитанное
-          </button>
-        </div>
-        <input className="support__input" placeholder="поиск" type="text" />
-        <div className="line__from-supports">
-          <img src={line1Image} alt="line" />
-        </div>
+        <SupportHeader handleMarkAsRead={handleMarkAsRead} />
+        <SupportInput onSearch={handleSearch} />
+        <LineImage />
         <div className="ul__support-list">
-          {supportItems.map((item) => (
-            <button
-              className="btn__support-item"
-              onClick={() => handleCardClick(item.id)}
-            >
-              <div className="support-items" key={item.id}>
-                <span
-                  className={`indicator ${item.isRead ? "read" : "unread"}`}
-                ></span>
-                <div className="support__header">
-                  <h2>{item.email}</h2>
-                  <h3>{item.name}</h3>
-                </div>
-              </div>
-            </button>
+          {filteredItems.map((item) => (
+            <SupportCard
+              key={item.id}
+              item={item}
+              handleCardClick={handleCardClick}
+              onPin={handlePinCard}
+              onUnpin={handleUnpinCard}
+            />
           ))}
         </div>
+      </div>
+
+      {/* Добавим ChatSection, передав в него выбранный чат */}
+      <div className="chat__section">
+        <ChatSection selectedChat={selectedChat} />
       </div>
     </section>
   );
 };
 
 export default SupportSection;
-// import React, { useState } from "react";
-// import "./SupportSection.css";
-// import activesImage from "../../assets/actives.svg";
-// import line1Image from "../../assets/line.png";
-
-// const supportData = [
-//   { email: "Ldanio12@gmail.com", name: "@mamont" },
-//   { email: "Ldanio12@gmail.com", name: "@mamont" },
-//   { email: "Ldanio12@gmail.com", name: "@mamont" },
-//   { email: "Ldanio12@gmail.com", name: "@mamont" },
-//   { email: "Ldanio12@gmail.com", name: "@mamont" },
-//   { email: "Ldanio12@gmail.com", name: "@mamont" },
-//   { email: "Ldanio12@gmail.com", name: "@mamont" },
-//   { email: "Ldanio12@gmail.com", name: "@mamont" },
-//   { email: "Ldanio12@gmail.com", name: "@mamont" },
-//   { email: "Ldanio12@gmail.com", name: "@mamont" },
-//   { email: "Ldanio12@gmail.com", name: "@mamont" },
-//   { email: "Ldanio12@gmail.com", name: "@mamont" },
-// ];
-
-// const SupportSection = () => {
-//   const [isRed, setIsRead] = useState(false);
-
-//   const handleMarkAsRead = () => {
-//     setIsRead(true);
-//     console.log("Все сообщения помечены как прочитанные");
-//   };
-//   return (
-//     <section className="supports">
-//       <div className="support__box">
-//         <div className="box__title">
-//           <h1 className="support__title">Лайв саппорт</h1>
-//           <button className="mark-read-button" onClick={handleMarkAsRead}>
-//             *
-//           </button>
-//         </div>
-//         <input className="support__input" placeholder="поиск" type="text" />
-//         <div className="line__from-supports">
-//           <img src={line1Image} alt="line" />
-//         </div>
-//         <ul className="ul__support-list">
-//           {supportData.map((item, index) => (
-//             <li className="li__support-item" key={index}>
-//               <h2 className="support__mail">{item.email}</h2>
-//               <h3 className="support__name">{item.name}</h3>
-//             </li>
-//           ))}
-//         </ul>
-//       </div>
-//     </section>
-//   );
-// };
-
-// export default SupportSection;
