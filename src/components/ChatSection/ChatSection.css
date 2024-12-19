@@ -104,3 +104,29 @@
   color: white;
   float: right;
 }
+
+/*  */
+.chat__input-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+.chat__send-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.send-icon {
+  font-size: 1.5rem;
+  color: white;
+}
+
+.chat__send-btn:focus {
+  outline: none;
+}

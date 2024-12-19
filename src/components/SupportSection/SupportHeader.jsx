@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from "react";
 import "./SupportHeader.css";
 import menuIcon from "../../assets/actives-noties.svg"; // Иконка меню
 import infoIcon from "../../assets/noties.svg"; // Иконка подсказки
+import Heading from "../Heading/Heading";
 
 const SupportHeader = ({ handleMarkAsRead }) => {
   const [showMenu, setShowMenu] = useState(false);
@@ -33,7 +34,7 @@ const SupportHeader = ({ handleMarkAsRead }) => {
 
   return (
     <div className="box__title">
-      <h1 className="support__title">Лайв саппорт</h1>
+      <Heading level="h1" text="Лайв саппорт" className="support__title" />
 
       {/* Кнопка для открытия меню */}
       <div className="mark-read-container" ref={menuRef}>

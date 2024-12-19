@@ -1,5 +1,6 @@
 import React, { useRef, useState } from "react";
 import "./MenuSection.css";
+// import menuData from "../../data/MenuData";
 
 // Импорт изображений
 import logoImg from "../../assets/logo.svg";
@@ -13,7 +14,6 @@ import disountImg from "../../assets/disount.svg";
 import supportImg from "../../assets/support.svg";
 import settingsImg from "../../assets/settings.svg";
 
-// Массив с данными для каждого элемента меню
 const menuItems = [
   {
     src: logoImg,

@@ -1,5 +1,4 @@
 import React from "react";
-import "./Heading.css";
 
 function Heading(props) {
   const className = props.className ? props.className : "";

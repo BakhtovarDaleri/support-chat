@@ -1,0 +1,45 @@
+.presets__menu {
+  position: relative;
+  padding: 32px 0 0 31px;
+  width: 308px;
+  height: 730px;
+  border-radius: 22px;
+  background-color: rgba(9, 13, 25, 1);
+  /* background-color: green; */
+}
+
+.img__settings {
+  position: absolute;
+  top: 15px;
+  right: 23px;
+}
+
+.img__presets-settings {
+  width: 50px;
+  height: 50px;
+}
+
+.presets__title {
+  color: white;
+  margin-bottom: 50px;
+  font-size: 20px;
+  font-weight: 700;
+}
+
+.presets__line {
+  margin-bottom: 24px;
+}
+
+.li__presets-item {
+  margin-bottom: 11px;
+  display: flex;
+  align-items: center;
+  padding: 0 0 0 17px;
+  width: 243px;
+  min-height: 40px;
+  color: white;
+  font-size: 13px;
+  font-weight: 500;
+  background-color: rgba(14, 19, 35, 1);
+  border-radius: 18px;
+}
